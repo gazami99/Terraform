@@ -1,0 +1,5 @@
+locals {
+
+    namespace = "istio-ingress"
+
+}

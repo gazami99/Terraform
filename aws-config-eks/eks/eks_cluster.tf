@@ -1,0 +1,25 @@
+resource "aws_eks_cluster" "eks_cluster" {
+  name     = var.eks_cluster_name
+  role_arn = aws_iam_role.eks_cluster_iam_role.arn
+
+  vpc_config {
+
+    # when configuring vpn, switch private access value false to true 
+    endpoint_private_access = false
+    endpoint_public_access  = true
+
+    subnet_ids = data.aws_subnets.vpc_subnets.ids
+  }
+
+  version = local.eks_cluster_version
+
+  # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
+  # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
+  depends_on = [
+    aws_iam_role_policy_attachment.eks_cluster_iam_role-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.eks_cluster_iam_role-AmazonEKSVPCResourceController,
+    aws_iam_role_policy_attachment.eks_cluster_iam_role-AmazonEKS_CNI_Policy
+  ]
+}
+
+

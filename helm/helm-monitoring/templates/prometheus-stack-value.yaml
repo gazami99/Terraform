@@ -1,0 +1,51 @@
+prometheus:
+  ## Settings affecting prometheusSpec
+  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
+  ##
+  prometheusSpec:
+    ## Prometheus StorageSpec for persistent data
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
+    ##
+    storageSpec:
+    ## Using PersistentVolumeClaim
+    ##
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "${prometheus_pvc_storageClassName}"
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: "${prometheus_pvc_storageSize}"
+          
+
+alertmanager:
+  alertmanagerSpec:
+#     ## Standard object's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata
+#     ## Metadata Labels and Annotations gets propagated to the Alertmanager pods.
+#     ##
+#     ## Storage is the definition of how storage will be used by the Alertmanager instances.
+#     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
+#     ##
+    storage: 
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "${alertmanager_pvc_storageClassName}"
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: "${alertmanager_pvc_storageSize}"
+
+
+# ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+# ##
+# grafana:
+#   # 아래 내용 추가
+#   persistence:
+#     enabled: true # true로 설정
+#     type: pvc
+#     storageClassName: "${grafana_pvc_storageClassName}"
+#     accessModes: ["ReadWriteOnce"]
+#     size: "${grafana_pvc_storageSize}"
+#     finalizers:
+#     - kubernetes.io/pvc-protection
+     
