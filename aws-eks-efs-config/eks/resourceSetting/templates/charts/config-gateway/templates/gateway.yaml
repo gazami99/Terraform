@@ -1,0 +1,46 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: istio-gateway
+  namespace: istio-gateway
+spec:
+  gatewayClassName: istio
+  addresses:
+  - value: istio-ingress.istio-gateway.svc.cluster.local
+    type: Hostname
+  listeners:
+  - name: http
+    hostname: "gazami.click"
+    port: 443
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: All
+
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: http
+  namespace: istio-gateway
+spec:
+  parentRefs:
+  - name: istio-gateway
+    namespace: istio-gateway
+  hostnames: ["gazami.click"]
+  rules:
+  - backendRefs:
+    - name: service-nginx
+      port: 80
+# apiVersion: gateway.networking.k8s.io/v1alpha2
+# kind: TCPRoute
+# metadata:
+#   name: tcproute
+# spec:
+#   parentRefs:
+#   - name: istio-gateway
+#     sectionName: tcp
+#   rules:
+#   - backendRefs:
+#     - name: service-nginx
+#       port: 80

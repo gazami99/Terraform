@@ -1,0 +1,13 @@
+useFIPS: false
+
+image:
+  repository: "${efs_image_repository}"
+
+controller:
+  # Specifies whether a deployment should be created
+
+  serviceAccount:
+    create: false
+    name: "${efs_csi_controller_serviceAccount_name}"
+
+

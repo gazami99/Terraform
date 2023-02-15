@@ -1,0 +1,67 @@
+## route  alb ingress to istio- ingress
+
+service:
+  # Type of service. Set to "None" to disable the service entirely
+  type: ClusterIP
+
+  ports:
+  - name: status-port
+    port: 15021
+    protocol: TCP
+    targetPort: 15021
+
+  - name: http2
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+
+  annotations: 
+    alb.ingress.kubernetes.io/healthcheck-port: "15021"
+    alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
+
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+  externalTrafficPolicy: ""
+  externalIPs: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 2000m
+    memory: 1024Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+# Pod environment variables
+env: {}
+
+# Labels to apply to all resources
+labels: {}
+
+# Annotations to apply to all resources
+annotations: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+topologySpreadConstraints: []
+
+affinity: {}
+
+# If specified, the gateway will act as a network gateway for the given network.
+networkGateway: ""
+
+imagePullSecrets: []

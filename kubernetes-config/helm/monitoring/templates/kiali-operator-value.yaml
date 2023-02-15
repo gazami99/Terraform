@@ -1,0 +1,6 @@
+
+clusterRoleCreator: true
+allowAllAccessibleNamespaces: true
+
+cr:
+  create: false

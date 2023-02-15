@@ -1,0 +1,13 @@
+server:
+  ingress:
+
+    enabled : true
+
+    host: [gazami.click]
+
+    paths:
+      - /monitoring/argocd
+  extraArgs:
+   - --insecure
+   - --rootpath
+   - /monitoring/argocd

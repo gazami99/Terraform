@@ -1,0 +1,10 @@
+annotations :
+  alb.ingress.kubernetes.io/certificate-arn: ${alb_acm-arn}
+  alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+  alb.ingress.kubernetes.io/load-balancer-name: ${alb_name}
+  alb.ingress.kubernetes.io/scheme: internet-facing
+  alb.ingress.kubernetes.io/subnets: ${alb_public_subnets_ids}
+  alb.ingress.kubernetes.io/target-type: ip
+  external-dns.alpha.kubernetes.io/hostname: ${dns_hostname}
+  alb.ingress.kubernetes.io/actions.ssl-redirect : '443'
+  kubernetes.io/ingress.class: alb

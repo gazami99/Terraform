@@ -1,0 +1,16 @@
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  name: "${external_dns_serviceAccount_name}"
+
+
+
+registry: txt
+txtOwnerId: "${route53_HostedZone_id}"
+
+domainFilters: ["${route53_Domain_Name_list}"]
+
+provider: aws
+
+extraArgs:
+  - --aws-zone-type=public # only look at public hosted zones (valid values are public, private or no value for both)

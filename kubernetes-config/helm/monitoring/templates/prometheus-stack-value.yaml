@@ -1,0 +1,118 @@
+prometheus:
+  ## Settings affecting prometheusSpec
+  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#prometheusspec
+  ##
+  # ingress:
+  #   enabled: true
+  #   host: ["gazami.click"]
+    
+  #   path: /monitoring/prometheus
+  prometheusSpec:
+    ## Prometheus StorageSpec for persistent data
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
+    ##
+    storageSpec:
+    ## Using PersistentVolumeClaim
+    ##
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "${prometheus_pvc_storageClassName}"
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: "${prometheus_pvc_storageSize}"
+
+    ruleNamespaceSelector: {}
+    ruleSelectorNilUsesHelmValues: false
+    ruleSelector: {}
+    ## Example which select all PrometheusRules resources
+
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelector: {}
+    podMonitorNamespaceSelector: {}
+    # containers:
+    #   - name: prometheus-server
+    #     ...
+    #     volumeMounts:
+    #       mountPath: /etc/prom-certs/
+    #       name: istio-certs
+    # volumes:
+    #   - emptyDir:
+    #       medium: Memory
+          
+    # name: istio-certs
+
+    additionalScrapeConfigs:
+    - job_name: 'istiod'
+      kubernetes_sd_configs:
+      - role: endpoints
+        namespaces:
+          names:
+          - istio-system
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+        action: keep
+        regex: istiod;http-monitoring
+    - job_name: 'envoy-stats'
+      metrics_path: /stats/prometheus
+      kubernetes_sd_configs:
+      - role: pod
+
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_container_port_name]
+        action: keep
+        regex: '.*-envoy-prom'
+
+alertmanager:
+  alertmanagerSpec:
+#     ## Standard object's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata
+#     ## Metadata Labels and Annotations gets propagated to the Alertmanager pods.
+#     ##
+#     ## Storage is the definition of how storage will be used by the Alertmanager instances.
+#     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
+#     ##
+    storage: 
+      volumeClaimTemplate:
+        spec:
+          storageClassName: "${alertmanager_pvc_storageClassName}"
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: "${alertmanager_pvc_storageSize}"
+
+prometheusOperator:
+  admissionWebhooks:
+    patch:
+      podAnnotations:
+        sidecar.istio.io/inject: "false"
+
+# ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+# ##
+grafana:
+  env:
+    GF_SERVER_ROOT_URL: https://localhost/monitoring/grafana
+    GF_SERVER_SERVE_FROM_SUB_PATH: 'true'
+  enabled: true
+  # 아래 내용 추가
+  deploymentStrategy:
+    type: Recreate
+  # persistence:
+  #   enabled: true
+  #   type: pvc
+  #   storageClassName: "${grafana_pvc_storageClassName}"
+  #   accessModes:
+  #   - ReadWriteOnce
+  #   size: "${grafana_pvc_storageSize}"
+  #   finalizers:
+  #   - kubernetes.io/pvc-protection 
+
+  ingress:
+    enabled: true
+    host: ["gazami.click"]
+    
+    path: /monitoring/grafana
+     

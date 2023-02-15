@@ -1,0 +1,47 @@
+apiVersion: kubegres.reactive-tech.io/v1
+kind: Kubegres
+metadata:
+  name: mypostgres
+  namespace: sql
+
+spec:
+
+   replicas: 1
+   image: postgres:14.1
+
+   database:
+      size: 5Gi
+      storageClassName: aws-efs-sc
+      volumeMount: /var/lib/postgresql/data
+
+   securityContext:
+      runAsNonRoot: false
+      runAsUser: {{ int .Values.securityContext.uid }}
+      fsGroup: {{ int .Values.securityContext.gid }}
+
+   # customConfig: mypostgres-conf
+
+   env:
+      - name: POSTGRES_PASSWORD
+        valueFrom:
+           secretKeyRef:
+              name: mypostgres-secret
+              key: superUserPassword
+
+      - name: POSTGRES_REPLICATION_PASSWORD
+        valueFrom:
+           secretKeyRef:
+              name: mypostgres-secret
+              key: replicationUserPassword
+
+      - name: POSTGRES_DB
+        valueFrom:
+           secretKeyRef:
+              name: mypostgres-secret
+              key: databaseName
+
+      - name: POSTGRES_USER
+        valueFrom:
+           secretKeyRef:
+              name: mypostgres-secret
+              key: dbUserName
