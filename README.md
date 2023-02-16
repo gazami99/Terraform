@@ -16,9 +16,9 @@ A good strategy to start with is `<COMPONENT>-<ENVIRONMENT>-<REGION>`
 
 ## Prerequisite
 
-  kubectl
-  helm
-  aws cli
+  1. kubectl
+  2. helm
+  3 .aws cli
 
 
 ## Add your files
