@@ -31,31 +31,31 @@ helm
 │  │      └─registry.terraform.io
 │  │          ├─gavinbunney
 │  │          │  └─kubectl
-│  │          │      └─1.14.0
-│  │          │          └─windows_amd64
+│  │          │   
+│  │          │          
 │  │          ├─hashicorp
 │  │          │  ├─aws
 │  │          │  │  └─4.47.0
-│  │          │  │      └─windows_amd64
+│  │          │  │      
 │  │          │  ├─helm
 │  │          │  │  └─2.8.0
-│  │          │  │      └─windows_amd64
+│  │          │  │  
 │  │          │  ├─kubernetes
 │  │          │  │  └─2.16.1
-│  │          │  │      └─windows_amd64
+│  │          │  │    
 │  │          │  ├─null
 │  │          │  │  └─3.2.1
-│  │          │  │      └─windows_amd64
+│  │          │  │      
 │  │          │  ├─random
 │  │          │  │  └─3.4.3
-│  │          │  │      └─windows_amd64
+│  │          │  │      
 │  │          │  └─tls
 │  │          │      └─4.0.4
-│  │          │          └─windows_amd64
+│  │          │        
 │  │          └─openvpn
 │  │              └─openvpn-cloud
 │  │                  └─0.0.7
-│  │                      └─windows_amd64
+│  │                   
 │  ├─efs
 │  └─eks
 │      ├─resourceSetting
@@ -78,10 +78,10 @@ helm
 │  │          └─hashicorp
 │  │              ├─aws
 │  │              │  └─4.47.0
-│  │              │      └─windows_amd64
+│  │              │    
 │  │              └─null
 │  │                  └─3.2.1
-│  │                      └─windows_amd64
+│  │                 
 │  ├─vpc
 │  └─vpn(client)
 ├─kubernetes-config
@@ -92,21 +92,21 @@ helm
 │  │          └─hashicorp
 │  │              ├─aws
 │  │              │  ├─4.50.0
-│  │              │  │  └─windows_amd64
+│  │              │  │  
 │  │              │  └─4.54.0
-│  │              │      └─windows_amd64
+│  │              │     
 │  │              ├─helm
 │  │              │  └─2.8.0
-│  │              │      └─windows_amd64
+│  │              │   
 │  │              ├─kubernetes
 │  │              │  └─2.16.1
-│  │              │      └─windows_amd64
+│  │              │    
 │  │              ├─null
 │  │              │  └─3.2.1
-│  │              │      └─windows_amd64
+│  │              │  
 │  │              └─random
 │  │                  └─3.4.3
-│  │                      └─windows_amd64
+│  │                   
 │  └─helm
 │      ├─monitoring
 │      │  └─templates
