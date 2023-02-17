@@ -81,3 +81,7 @@ helm
 - use kubernetes Gateway API, experimental
 - push docker image to github private repository instead of AWS ECR
 - experimetal, because rds needs other teams rather than Iac team  configure your Sql in eks then other team construct rds in another vpc (need vpc peering)
+- null resource used to assign building sequence examples,
+Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
+Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
+also other resource so do therfore, check carefully infra mechanism 
