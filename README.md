@@ -24,6 +24,12 @@ helm
 
 ## Structure
 ```
+
+-------------------------------------------------
+├─aws-vpc-vpn-config
+│  ├─vpc
+│  └─vpn(client)
+----------------------------------------------------
 ├─aws-eks-efs-config
 │  ├─efs
 │  └─eks
@@ -39,9 +45,7 @@ helm
 │      │      └─istio
 │      └─templates
 │          └─iam
-├─aws-vpc-vpn-config
-│  ├─vpc
-│  └─vpn(client)
+----------------------------------------------------
 ├─kubernetes-config
 │  └─helm
 │      ├─monitoring
