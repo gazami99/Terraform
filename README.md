@@ -25,37 +25,6 @@ helm
 ## Structure
 ```
 ├─aws-eks-efs-config
-│  ├─.terraform
-│  │  ├─modules
-│  │  └─providers
-│  │      └─registry.terraform.io
-│  │          ├─gavinbunney
-│  │          │  └─kubectl
-│  │          │   
-│  │          │          
-│  │          ├─hashicorp
-│  │          │  ├─aws
-│  │          │  │  └─4.47.0
-│  │          │  │      
-│  │          │  ├─helm
-│  │          │  │  └─2.8.0
-│  │          │  │  
-│  │          │  ├─kubernetes
-│  │          │  │  └─2.16.1
-│  │          │  │    
-│  │          │  ├─null
-│  │          │  │  └─3.2.1
-│  │          │  │      
-│  │          │  ├─random
-│  │          │  │  └─3.4.3
-│  │          │  │      
-│  │          │  └─tls
-│  │          │      └─4.0.4
-│  │          │        
-│  │          └─openvpn
-│  │              └─openvpn-cloud
-│  │                  └─0.0.7
-│  │                   
 │  ├─efs
 │  └─eks
 │      ├─resourceSetting
@@ -71,42 +40,9 @@ helm
 │      └─templates
 │          └─iam
 ├─aws-vpc-vpn-config
-│  ├─.terraform
-│  │  ├─modules
-│  │  └─providers
-│  │      └─registry.terraform.io
-│  │          └─hashicorp
-│  │              ├─aws
-│  │              │  └─4.47.0
-│  │              │    
-│  │              └─null
-│  │                  └─3.2.1
-│  │                 
 │  ├─vpc
 │  └─vpn(client)
 ├─kubernetes-config
-│  ├─.terraform
-│  │  ├─modules
-│  │  └─providers
-│  │      └─registry.terraform.io
-│  │          └─hashicorp
-│  │              ├─aws
-│  │              │  ├─4.50.0
-│  │              │  │  
-│  │              │  └─4.54.0
-│  │              │     
-│  │              ├─helm
-│  │              │  └─2.8.0
-│  │              │   
-│  │              ├─kubernetes
-│  │              │  └─2.16.1
-│  │              │    
-│  │              ├─null
-│  │              │  └─3.2.1
-│  │              │  
-│  │              └─random
-│  │                  └─3.4.3
-│  │                   
 │  └─helm
 │      ├─monitoring
 │      │  └─templates
@@ -120,6 +56,8 @@ helm
 │                  │  └─templates
 │                  └─kubegres
 │                      └─templates
+
+
 
 ```
 
