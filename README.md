@@ -60,7 +60,7 @@ helm
 │                  │  └─templates
 │                  └─kubegres
 │                      └─templates
-
+```
 </div>
 
 <div align=center>
@@ -70,7 +70,7 @@ helm
 </div>
 
 
-```
+
 
 ## Add your files
 
