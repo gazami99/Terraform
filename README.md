@@ -61,6 +61,13 @@ helm
 │                  └─kubegres
 │                      └─templates
 
+</div>
+
+<div align=center>
+</div>
+<div align=center>
+<img src="https://github.com/gazami99/final-project/blob/main/image/finalproject.drawio.png">
+</div>
 
 
 ```
