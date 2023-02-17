@@ -74,4 +74,10 @@ helm
 
 ## Features
 
-- g
+- deploy ec2  private subnet
+- using vpn when private access mode is selected
+- if eks needs aws resource, eks provides OIDC to grant pod auth to use the specific reosurce(alb,efs,...)
+- recommend to use helm than yaml to configure kubernetes for robust structure
+- use kubernetes Gateway API, experimental
+- push docker image to github private repository instead of AWS ECR
+- experimetal, because rds needs other teams rather than Iac team  configure your Sql in eks then other team construct rds in another vpc (need vpc peering)
