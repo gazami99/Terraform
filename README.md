@@ -23,7 +23,7 @@ helm
 ```
 
 ## Structure
-
+```
 ├─aws-eks-efs-config
 │  ├─.terraform
 │  │  ├─modules
@@ -121,7 +121,7 @@ helm
 │                  └─kubegres
 │                      └─templates
 
-
+```
 
 ## Add your files
 
